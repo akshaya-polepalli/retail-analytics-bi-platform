@@ -1,21 +1,21 @@
 customer_id,customer_name,email,city,signup_date
-1,John Doe,john.doe@email.com,New York,2024-01-10
-2,Jane Smith,jane.smith@email.com,Boston,2024-02-15
-3,Michael Brown,michael.b@email.com,Chicago,2024-03-05
-4,Emily Davis,emily.d@email.com,Seattle,2024-04-12
-5,David Wilson,david.w@email.com,Austin,2024-05-20
-6,Sarah Johnson,sarah.j@email.com,Denver,2024-06-08
-7,Chris Lee,chris.lee@email.com,Miami,2024-07-14
-8,Laura Martinez,laura.m@email.com,Portland,2024-08-22
-9,James Taylor,james.t@email.com,Atlanta,2024-09-30
-10,Anna White,anna.w@email.com,Phoenix,2024-10-18
-11,Robert Harris,robert.h@email.com,Dallas,2025-01-05
-12,Jennifer Clark,jennifer.c@email.com,San Diego,2025-02-11
-13,Daniel Lewis,daniel.l@email.com,Philadelphia,2025-03-19
-14,Maria Walker,maria.w@email.com,Houston,2025-04-25
-15,Kevin Hall,kevin.h@email.com,Detroit,2025-05-30
-16,Olivia Allen,olivia.a@email.com,Minneapolis,2025-06-12
-17,Thomas Young,thomas.y@email.com,Charlotte,2025-07-08
-18,Sophia King,sophia.k@email.com,Nashville,2025-08-16
-19,William Scott,william.s@email.com,Columbus,2025-09-22
-20,Isabella Green,isabella.g@email.com,Indianapolis,2025-10-10
+1,John Doe,john.doe@email.com,New York,2025-08-10
+2,Jane Smith,jane.smith@email.com,Boston,2025-08-15
+3,Michael Brown,michael.b@email.com,Chicago,2025-08-22
+4,Emily Davis,emily.d@email.com,Seattle,2025-09-05
+5,David Wilson,david.w@email.com,Austin,2025-09-12
+6,Sarah Johnson,sarah.j@email.com,Denver,2025-09-20
+7,Chris Lee,chris.lee@email.com,Miami,2025-10-08
+8,Laura Martinez,laura.m@email.com,Portland,2025-10-18
+9,James Taylor,james.t@email.com,Atlanta,2025-11-02
+10,Anna White,anna.w@email.com,Phoenix,2025-11-15
+11,Robert Harris,robert.h@email.com,Dallas,2025-12-05
+12,Jennifer Clark,jennifer.c@email.com,San Diego,2025-12-20
+13,Daniel Lewis,daniel.l@email.com,Philadelphia,2026-01-08
+14,Maria Walker,maria.w@email.com,Houston,2026-01-15
+15,Kevin Hall,kevin.h@email.com,Detroit,2026-02-03
+16,Olivia Allen,olivia.a@email.com,Minneapolis,2026-02-14
+17,Thomas Young,thomas.y@email.com,Charlotte,2026-03-10
+18,Sophia King,sophia.k@email.com,Nashville,2026-03-22
+19,William Scott,william.s@email.com,Columbus,2026-04-05
+20,Isabella Green,isabella.g@email.com,Indianapolis,2026-04-18

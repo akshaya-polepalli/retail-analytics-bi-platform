@@ -4,6 +4,25 @@ from sqlalchemy import text
 from src.database.connection import engine
 
 
+def get_kpis_for_range(start_date, end_date) -> dict:
+    query = text("""
+        SELECT
+            :start_date AS period_start,
+            :end_date AS period_end,
+            COUNT(DISTINCT order_id) AS total_orders,
+            COALESCE(SUM(total_amount), 0) AS total_revenue,
+            COALESCE(SUM(profit_amount), 0) AS total_profit,
+            COALESCE(ROUND(AVG(total_amount), 2), 0) AS avg_order_value
+        FROM core.orders
+        WHERE order_date BETWEEN :start_date AND :end_date
+    """)
+    with engine.connect() as conn:
+        row = conn.execute(
+            query, {"start_date": start_date, "end_date": end_date}
+        ).mappings().one()
+    return dict(row)
+
+
 def get_kpis_for_date(report_date) -> dict:
     query = text("""
         SELECT
