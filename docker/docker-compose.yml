@@ -1,0 +1,47 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: bi_postgres
+    environment:
+      POSTGRES_DB: bi_platform
+      POSTGRES_USER: bi_user
+      POSTGRES_PASSWORD: bi_pass
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ../database/schema:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bi_user -d bi_platform"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  worker:
+    build: ..
+    container_name: bi_worker
+    env_file:
+      - ../.env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ..:/app
+    command: python -m src.scheduler
+
+  dashboard:
+    build: ..
+    container_name: bi_dashboard
+    env_file:
+      - ../.env
+    ports:
+      - "8501:8501"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ..:/app
+    command: streamlit run dashboards/app.py --server.port=8501 --server.address=0.0.0.0
+
+volumes:
+  postgres_data:

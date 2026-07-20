@@ -1,0 +1,13 @@
+python-dotenv
+sqlalchemy
+psycopg2-binary
+pandas
+pydantic
+apscheduler
+openai
+requests
+streamlit
+plotly
+matplotlib
+tenacity
+pytest

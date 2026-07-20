@@ -1,0 +1,16 @@
+product_id,product_name,category,unit_cost,unit_price
+101,Laptop Pro,Electronics,700.00,999.00
+102,Wireless Mouse,Electronics,10.00,25.00
+103,Mechanical Keyboard,Electronics,45.00,89.00
+104,27inch Monitor,Electronics,180.00,299.00
+105,USB-C Hub,Electronics,20.00,49.00
+201,Office Chair,Furniture,120.00,249.00
+202,Standing Desk,Furniture,250.00,499.00
+203,Desk Lamp,Furniture,15.00,39.00
+301,Notebook Pack,Stationery,3.00,8.99
+302,Ballpoint Pens,Stationery,1.50,4.99
+303,Sticky Notes,Stationery,2.00,5.99
+401,Coffee Maker,Appliances,35.00,79.00
+402,Water Bottle,Accessories,5.00,19.99
+403,Backpack,Accessories,25.00,59.99
+404,Webcam HD,Electronics,30.00,69.99

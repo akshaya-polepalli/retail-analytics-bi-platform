@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: bi_platform
+          POSTGRES_USER: bi_user
+          POSTGRES_PASSWORD: bi_pass
+        ports:
+          - 5433:5432
+        options: >-
+          --health-cmd "pg_isready -U bi_user -d bi_platform"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      DATABASE_URL: postgresql+psycopg2://bi_user:bi_pass@localhost:5433/bi_platform
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install PostgreSQL client
+        run: sudo apt-get update && sudo apt-get install -y postgresql-client
+
+      - name: Initialize database schema
+        run: |
+          for file in database/schema/*.sql; do
+            PGPASSWORD=bi_pass psql -h localhost -p 5433 -U bi_user -d bi_platform -f "$file"
+          done
+
+      - name: Run unit tests
+        run: pytest tests/test_validate.py tests/test_transform.py -v
+
+      - name: Run integration tests
+        run: pytest tests/test_integration.py -v
