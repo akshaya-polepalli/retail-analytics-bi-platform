@@ -1,8 +1,16 @@
-# Enterprise AI Business Intelligence Automation Platform
+# Retail Analytics & BI Automation Platform
 
-A production-style, **code-only** enterprise BI platform for retail analytics. It automates daily ETL, KPI reporting, AI executive summaries, workflow monitoring, and dashboard delivery using Python, PostgreSQL, APScheduler, and Streamlit.
+Automated retail business intelligence platform for daily KPI reporting, ETL pipelines, executive dashboards, and workflow monitoring.
 
-![Executive KPIs](docs/screenshots/executive_kpis.png)
+<p align="center">
+  <img src="docs/screenshots/executive_kpis.png" alt="Executive Overview Dashboard" width="900"/>
+</p>
+
+<p align="center">
+  <strong>Python</strong> · <strong>PostgreSQL</strong> · <strong>Streamlit</strong> · <strong>APScheduler</strong> · <strong>Docker</strong>
+</p>
+
+---
 
 ## Business Problem
 
@@ -13,15 +21,15 @@ Retail executives need daily answers to:
 - Are we running low on inventory?
 - What should management do next?
 
-This project replaces manual reporting with an auditable automated pipeline.
+This platform replaces manual reporting with an auditable automated pipeline.
 
-## Highlights
+## Key Features
 
 - Modular Python ETL with validation and reject handling
 - PostgreSQL layered schema with analytics views
 - Scheduled jobs for ETL, reporting, and health checks
-- AI summary service with safe KPI JSON input and template fallback
-- Seven-page Streamlit executive dashboard
+- AI executive summary service with safe KPI JSON input
+- Interactive Streamlit dashboard with filters and CSV export
 - Docker Compose deployment
 - Unit, integration, and CI test coverage
 
@@ -63,7 +71,8 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) and [docs/ER_DIAGRAM.md](docs/E
 ### 1. Install dependencies
 
 ```powershell
-cd enterprise-bi-platform
+git clone https://github.com/akshaya-polepalli/retail-analytics-bi-platform.git
+cd retail-analytics-bi-platform
 python -m venv venv
 .\venv\Scripts\Activate.ps1
 pip install -r requirements.txt
@@ -89,39 +98,22 @@ python -m src.run_pipeline
 ### 4. Launch the dashboard
 
 ```powershell
-streamlit run dashboards/app.py
+streamlit run dashboards/app.py --server.port 8502
 ```
 
-Open http://localhost:8501
-
-### 5. Generate README screenshots
-
-```powershell
-python scripts/generate_screenshots.py
-```
-
-## Screenshots
-
-| Executive KPIs | Top Products |
-|---|---|
-| ![Executive KPIs](docs/screenshots/executive_kpis.png) | ![Top Products](docs/screenshots/top_products.png) |
-
-| Monthly Revenue | Workflow Monitoring |
-|---|---|
-| ![Monthly Revenue](docs/screenshots/monthly_revenue.png) | ![Workflow Monitoring](docs/screenshots/workflow_monitoring.png) |
+Open http://localhost:8502
 
 ## Project Structure
 
 ```text
-enterprise-bi-platform/
+retail-analytics-bi-platform/
 ├── src/                 # Application code
 ├── dashboards/          # Streamlit UI
 ├── database/            # Schema and seed data
 ├── tests/               # Unit and integration tests
-├── docs/                # Architecture, interview, deployment guides
+├── docs/                # Architecture and deployment guides
 ├── scripts/             # Utility scripts
-├── docker/              # Docker Compose services
-└── .github/workflows/   # CI pipeline
+└── docker/              # Docker Compose services
 ```
 
 ## KPI Definitions
@@ -140,20 +132,6 @@ enterprise-bi-platform/
 | `DATABASE_URL` | Yes | PostgreSQL connection string |
 | `OPENAI_API_KEY` | No | Enables OpenAI summaries |
 | `SLACK_WEBHOOK_URL` | No | Enables Slack alerts |
-| `SMTP_*` | No | Enables email delivery |
-
-The project works fully without OpenAI or Slack.
-
-## Manual Commands
-
-```powershell
-python -m src.jobs.daily_etl
-python -m src.jobs.executive_report
-python -m src.jobs.health_check
-python -m src.run_pipeline
-python -m src.scheduler
-pytest
-```
 
 ## Documentation
 
@@ -161,27 +139,8 @@ pytest
 - [ER Diagram](docs/ER_DIAGRAM.md)
 - [Workflows](docs/WORKFLOWS.md)
 - [Deployment](docs/DEPLOYMENT.md)
-- [Interview Guide](docs/INTERVIEW_GUIDE.md)
 - [Demo Script](docs/DEMO_SCRIPT.md)
 - [Changelog](CHANGELOG.md)
-
-## Resume Bullets
-
-- Developed an enterprise AI-powered Business Intelligence automation platform using Python, PostgreSQL, APScheduler, and Streamlit.
-- Built a modular ETL pipeline with validation, reject handling, idempotent loading, and audit logging.
-- Designed PostgreSQL analytics views and an executive dashboard for KPI monitoring and business storytelling.
-- Implemented workflow monitoring, optional AI-assisted reporting, and stakeholder notification hooks.
-
-## Final Checklist
-
-- [x] GitHub-ready repository structure
-- [x] Architecture and ER diagrams
-- [x] Workflow documentation
-- [x] Sample data and working pipeline
-- [x] Dashboard with filters and CSV export
-- [x] Tests and CI workflow
-- [x] README screenshots
-- [ ] Demo video (use [docs/DEMO_SCRIPT.md](docs/DEMO_SCRIPT.md))
 
 ## License
 
