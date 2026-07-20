@@ -35,19 +35,32 @@ This platform replaces manual reporting with an auditable automated pipeline.
 
 ## Architecture
 
+```text
+CSV Seed Files
+      │
+      ▼
+Python ETL Pipeline ──► PostgreSQL (raw → core → analytics views)
+      ▲                         │
+      │                         ├──► Streamlit Dashboard
+APScheduler                     └──► AI Summary Service ──► Audit Logs
+  • Daily ETL
+  • Executive Report
+  • Health Check
+```
+
 ```mermaid
-flowchart TB
-    CSV[CSV Seed Files] --> ETL[Python ETL Pipeline]
-    ETL --> RAW[(raw)]
-    ETL --> CORE[(core)]
-    CORE --> VIEWS[(analytics views)]
-    SCHED[APScheduler] --> ETL_JOB[daily_etl]
-    SCHED --> RPT[executive_report]
-    SCHED --> HC[health_check]
-    VIEWS --> AI[AI Summary Service]
-    VIEWS --> DASH[Streamlit Dashboard]
-    AI --> AUDIT[(audit)]
-    ETL_JOB --> AUDIT
+flowchart TD
+    A[CSV Seed Files] --> B[Python ETL Pipeline]
+    B --> C[PostgreSQL Warehouse]
+    C --> D[Analytics SQL Views]
+    E[APScheduler] --> F[Daily ETL Job]
+    E --> G[Executive Report Job]
+    E --> H[Health Check Job]
+    F --> B
+    D --> I[Streamlit Dashboard]
+    D --> J[AI Summary Service]
+    J --> K[Audit Logs]
+    F --> K
 ```
 
 See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) and [docs/ER_DIAGRAM.md](docs/ER_DIAGRAM.md) for full diagrams.
